@@ -17,27 +17,27 @@ export const goods = [
 ];
 
 export const App = () => {
-  const [val, setGood] = useState(goods[8]);
+  const [selectedGood, setSelectedGood] = useState(goods[8]);
 
   function btClickHandler(e) {
-    if (e.target.value === val) {
-      setGood('');
+    if (e.target.value === selectedGood) {
+      setSelectedGood('');
     } else {
-      setGood(e.target.value);
+      setSelectedGood(e.target.value);
     }
   }
 
   return (
     <main className="section container">
       <h1 className="title is-flex is-align-items-center">
-        {val ? `${val} is selected` : 'No goods selected'}
-        {val ? (
+        {selectedGood ? `${selectedGood} is selected` : 'No goods selected'}
+        {selectedGood ? (
           <button
             data-cy="ClearButton"
             type="button"
             className="delete ml-3"
             onClick={() => {
-              setGood('');
+              setSelectedGood('');
             }}
           />
         ) : (
@@ -51,23 +51,23 @@ export const App = () => {
             <tr
               data-cy="Good"
               className={cn({
-                'has-background-success-light': val === good,
+                'has-background-success-light': selectedGood === good,
               })}
             >
               <td>
                 <button
                   data-cy={cn({
-                    AddButton: val !== good,
-                    RemoveButton: val === good,
+                    AddButton: selectedGood !== good,
+                    RemoveButton: selectedGood === good,
                   })}
                   type="button"
                   className={cn('button', {
-                    'is-info': val === good,
+                    'is-info': selectedGood === good,
                   })}
                   onClick={btClickHandler}
                   value={good}
                 >
-                  {val === good ? '-' : '+'}
+                  {selectedGood === good ? '-' : '+'}
                 </button>
               </td>
 
